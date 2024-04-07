@@ -12,7 +12,7 @@ const page = () => {
      
     event.preventDefault() 
     
-    axios.post('http://localhost:5000/users/', inputData)
+    axios.post('https://werrrr.onrender.com/users/', inputData)
     .then (res => {
        
         window.location.href = "/"; 
