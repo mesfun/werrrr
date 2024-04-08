@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('https://werrrr.onrender.com:5000/users')
+    axios.get('https://werrrr.onrender.com/users')
       .then(response => {
         setData(response.data)
         setUsers(response.data);
