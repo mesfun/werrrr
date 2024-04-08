@@ -9,10 +9,11 @@ export default function Home() {
   const [users, setUsers] = useState([]);
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true);
-
+ const url = `https://api.openweathermap.org/data/2.5/weather?q=${loc}&appid=${apiKey}`;
   useEffect(() => {
     setLoading(true);
-   axios.get('http://api.openweathermap.org/data/2.5/weather', 
+ 
+        const req = axios.get(url);
       .then(response => {
         setData(response.data)
         setUsers(response.data);
