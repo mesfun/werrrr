@@ -1,20 +1,20 @@
-const jsonServer = require("json-server");
-const server = jsonServer.create();
-const router = jsonServer.router("./db.json");
-const middlewares = jsonServer.defaults({
-    static: "./build",
-});
+const next = require('next') 
+const http = require('http') 
 
-const port = process.env.PORT || 5000;
+const app = next({dev: process.env.NODE_ENV !== 'production'}) 
 
-server.use(middlewares);
-server.use(
-    jsonServer.rewriter({
-        "/api/*": "/$1",
-    })
-);
-
-server.use(router);
-server.listen(port, () => {
-    console.log(`Server is running on ${port}`);
-});
+app.prepare().then(() => { 
+const server = http.createServer((req, res) => { 
+// Handle API routes 
+if (req.url.startsWith('/db')) { 
+	// Your API handling logic here 
+} else { 
+	// Handle Next.js routes 
+	return app.getRequestHandler()(req, res) 
+} 
+}) 
+server.listen(5000, (err) => { 
+if (err) throw err 
+console.log('> Ready on http://localhost:3000') 
+}) 
+})
