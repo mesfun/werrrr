@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('127.0.0.1:5000/users')
+   axios.get('http://localhost:5000/users')
       .then(response => {
         setData(response.data)
         setUsers(response.data);
