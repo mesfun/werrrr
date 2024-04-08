@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('https://werrrr.onrender.com/db/users')
+   axios.get('http://api.openweathermap.org/data/2.5/weather', 
       .then(response => {
         setData(response.data)
         setUsers(response.data);
