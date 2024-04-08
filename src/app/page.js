@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(true);
-     axios.get('https://github.com/mesfun/werrrr:5000/users')
+     axios.get('https://github.com/mesfun/werrrr/blob/main/db.json:5000/users')
       .then(response => {
         setData(response.data)
         setUsers(response.data);
