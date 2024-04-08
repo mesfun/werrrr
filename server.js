@@ -6,7 +6,7 @@ const app = next({dev: process.env.NODE_ENV !== 'production'})
 app.prepare().then(() => { 
 const server = http.createServer((req, res) => { 
 // Handle API routes 
-if (req.url.startsWith('./db.js')) { 
+if (req.url.startsWith('./db.json')) { 
 	// Your API handling logic here 
 } else { 
 	// Handle Next.js routes 
