@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(true);
-     axios.get('http://192.168.0.18:5000/users')
+     axios.get('http://192.168.0.1:5000/users')
       .then(response => {
         setData(response.data)
         setUsers(response.data);
@@ -27,7 +27,7 @@ const Filter = (event) => {
 
 
   const deleteUser = (id) => {
-    axios.delete(`http://192.168.0.18:5000/users/${id}`)
+    axios.delete(`http://192.168.0.1:5000/users/${id}`)
       .then(() => {
         const updatedUsers = users.filter(user => user.id !== id);
         setUsers(updatedUsers);
