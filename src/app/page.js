@@ -7,7 +7,7 @@ import Link from "next/link";
   
 export default function Home() {
   const [users, setUsers] = useState([]);
-  const [data, setData] = useState([])
+  const [datas, setDatas] = useState([])
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,9 +27,7 @@ export default function Home() {
   }, []);
 
 
-const Filter = (event) => {
-  setUsers(data.filter(f => f.name.toLowerCase().includes(event.target.value)))
-}
+
 
 
   const deleteUser = (id) => {
@@ -51,7 +49,7 @@ const Filter = (event) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      Example [Public]
+    
       {data && data.map((v, k)=> (
         <div key={k}>
           <p>{v.name}</p>
