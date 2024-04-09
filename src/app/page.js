@@ -12,12 +12,18 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(true);
-   axios.get('https://api.jsonsilo.com/public/d1166487-7a88-4c53-9be7-94d20dbd04d4:5000/users')
-      .then(response => {
-        setData(response.data)
-        setUsers(response.data);
-      })
-      .finally(() => setLoading(false));
+  const url = 'https://api.jsonsilo.com/public/d1166487-7a88-4c53-9be7-94d20dbd04d4';
+    const headers = {
+        'Content-Type': 'application/json'
+    };
+
+    axios.get(url, { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error('There was an error with the request:', error);
+    });
   }, []);
 
 
