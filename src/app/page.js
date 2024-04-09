@@ -60,11 +60,13 @@ const Filter = (event) => {
             </tr>
           </thead>
           <tbody>
-            {data.map(user => (
-              <tr key={user.id}>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
+           {data && data.map((v, k)=> (
+        <div key={k}>
+          <p>{v.name}</p>
+          <p>{v.email}</p>
+        </div>
+        
+      ))}
                 <Link href = {`/Delete/${user.id}`} className = "btn btn-sm btn-primary"> Update </Link>
                   <button className="btn btn-sm ms-2 btn-danger" onClick={() => deleteUser(user.id)}>Delete</button>
                 </td>
