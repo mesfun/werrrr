@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
   
-export default function Home() {
+export default function Home(data) {
   const [users, setUsers] = useState([]);
   const [datas, setDatas] = useState([])
   const [loading, setLoading] = useState(true);
