@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(true);
-   axios.get('http://localhost:5000/users')
+   axios.get('https://api.jsonsilo.com/public/d1166487-7a88-4c53-9be7-94d20dbd04d4/users')
       .then(response => {
         setData(response.data)
         setUsers(response.data);
