@@ -52,29 +52,28 @@ const Filter = (event) => {
         <p>Loading...</p>
       ) : (
         <table className="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Username</th>
-              <th>Actions</th>
-            </tr>
           </thead>
-          <tbody>
-           {data && data.map((v, k)=> (
-        <div key={k}>
-          <p>{v.name}</p>
-          <p>{v.email}</p>
-        </div>
-        
-      ))}
-                <Link href = {`/Delete/${user.id}`} className = "btn btn-sm btn-primary"> Update </Link>
-                  <button className="btn btn-sm ms-2 btn-danger" onClick={() => deleteUser(user.id)}>Delete</button>
-                </td>
-              </tr>
+
+          {data &&
+            data.map((v, k) => (
+              <div key={k}>
+                <p>{v.name}</p>
+                <p>{v.email}</p>
+              </div>
             ))}
-          </tbody>
+
+          <Link href={`/Delete/${user.id}`} className="btn btn-sm btn-primary">
+            {" "}
+            Update{" "}
+          </Link>
+          <button
+            className="btn btn-sm ms-2 btn-danger"
+            onClick={() => deleteUser(user.id)}
+          >
+            Delete
+          </button>
         </table>
       )}
     </div>
   );
-};
+}
