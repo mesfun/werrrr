@@ -12,7 +12,7 @@ const page = () => {
      
     event.preventDefault() 
     
-   axios.post('http://localhost:5000/users/', inputData)
+   axios.post('https://api.jsonsilo.com/public/d1166487-7a88-4c53-9be7-94d20dbd04d4/', inputData)
     .then (res => {
        
         window.location.href = "/"; 
