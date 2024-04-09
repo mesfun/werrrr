@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(true);
-  const url = 'https://api.jsonsilo.com/public/d1166487-7a88-4c53-9be7-94d20dbd04d4';
+  const url = 'https://api.jsonsilo.com/public/d1166487-7a88-4c53-9be7-94d20dbd04d4/users';
     const headers = {
         'Content-Type': 'application/json'
     };
