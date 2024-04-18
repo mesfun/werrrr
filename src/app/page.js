@@ -1,72 +1,40 @@
-"use client";
-import "bootstrap/dist/css/bootstrap.min.css";
+// pages/index.js
+import React from 'react';
 
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Link from "next/link";
-  
-export default function Home() {
-  const [users, setUsers] = useState([]);
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true);
+class Index extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+    };
+  }
 
-  useEffect(() => {
-    setLoading(true);
-    axios.get('https://api.jsonsilo.com/public/d1166487-7a88-4c53-9be7-94d20dbd04d4')
-      .then(response => {
-        setData(response.data)
-        setUsers(response.data);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  componentDidMount() {
+    this.fetchData();
+  }
 
+  async fetchData() {
+    try {
+      const response = await fetch('https://api.jsonsilo.com/public/d1166487-7a88-4c53-9be7-94d20dbd04d4');
+      const jsonData = await response.json();
+      this.setState({ data: jsonData });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
 
-const Filter = (event) => {
-  setUsers(data.filter(f => f.name.toLowerCase().includes(event.target.value)))
+  render() {
+    return (
+      <div>
+        <h1>Data from JSON:</h1>
+        <ul>
+          {this.state.data.map(item => (
+            <li key={item.id}>{item.name}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }
 
-
-  const deleteUser = (id) => {
-    axios.delete(`http://localhost:5000/users/${id}`)
-      .then(() => {
-        const updatedUsers = users.filter(user => user.id !== id);
-        setUsers(updatedUsers);
-      })
-      .catch(error => {
-        console.error('Error deleting user:', error);
-      });
-  };
-
-  return (
-    <div className="container mt-5">
-      <h1>User Management</h1>
-      <input type="text" className="form-control" onChange={Filter} placeholder="Search"/>
-      <div className='text-end'><Link href = "/create" className = "btn btn-primary">Create </Link></div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Username</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map(user => (
-              <tr key={user.id}>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
-                <Link href = {`/Delete/${user.id}`} className = "btn btn-sm btn-primary"> Update </Link>
-                  <button className="btn btn-sm ms-2 btn-danger" onClick={() => deleteUser(user.id)}>Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
-  );
-};
+export default Index;
